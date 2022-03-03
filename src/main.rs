@@ -84,26 +84,31 @@ fn main() {
     );
     loop {
         //Takes in an input
+        //todo unwrap the input or validate the input
+        //make the loop based on max_tries
+        //break loop once max_tries are exhausted
         let mut guess = String::from("");
         io::stdin()
             .read_line(&mut guess)
             .expect("Failed to read line");
         println!("You guessed: {}", guess);
-        let altered_guess = guess.trim().chars().next().unwrap();
+        let altered_guess: char = guess.trim().chars().next().unwrap();
+        // if altered_guess == None<char> {
+        //    continue
+        // }
+
+        // let unwrapped_guess = match altered_guess {
+        //     Some(x) => x,
+        //     None => continue
+        // };
         'outer: for n in random_word.char_indices() {
-   
-            // if guess.trim().len() > 0 {
-            //     println!("yes")
-            // }
+    
             if !player_one.correct_guesses.contains(&n.1) {
-                // println!("shiit {:?}", player_one.correct_guesses.len());
                 if n.1 == altered_guess {
                     player_one.correct_guesses.push(n.1);
-                    player_one.no_of_guesses += 1;
+                     player_one.no_of_guesses += 1;
                 }
             } else {
-                //  player_one.no_of_guesses += 1;
-                // println!("choose another word");
                 continue 'outer;
             }
             println!(
