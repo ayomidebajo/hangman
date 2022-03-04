@@ -87,7 +87,7 @@ fn main() {
 
     loop {
         //Takes in an input
-        //todo unwrap the input or validate the input
+        //Todo Check if input is more than one char
         let mut guess = String::from("");
         io::stdin()
             .read_line(&mut guess)
