@@ -80,7 +80,7 @@ fn main() {
         letters,
         list_of_words,
         ouput_string_vec,
-        10,
+        9,
         "".to_string(),
         guess_chars,
     );
@@ -95,21 +95,24 @@ fn main() {
             .read_line(&mut guess)
             .expect("Failed to read line");
         let altered_guess: char = guess.trim().chars().next().unwrap();
-        player_one.no_of_guesses += 1;
+        
 
-        'outer: for n in player_one.word.char_indices() {
-            if !player_one.correct_guesses.contains(&n.1) {
+
+       if !player_one.ouput_string.contains(&altered_guess) {
+         player_one.no_of_guesses += 1;
+for n in player_one.word.char_indices() {
+
                 if n.1 == altered_guess {
-                    player_one.correct_guesses.push(n.1);
+                  player_one.correct_guesses.push(n.1);
                     player_one.ouput_string[n.0] = n.1;
+                             
                     println!("Fill in the blank spaces{:?}", player_one.ouput_string);
                 }
-                
-            } else {
-                continue 'outer;
-            }
-        }
 
+        } 
+      } else {
+        println!("That letter is taken!!! guess again")
+      }
         if player_one.correct_guesses.len() == guess_vec.len() {
                   println!("YOU WIN!!");
                   break
