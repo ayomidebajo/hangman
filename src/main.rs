@@ -67,7 +67,7 @@ fn main() {
         'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
     ];
     let guess_vec: Vec<char> = random_word.clone().chars().collect();
-    println!("guess vec{:?}", guess_vec);
+    // println!("guess vec{:?}", guess_vec);
     let guess_chars = vec![];
     let ouput_string_vec = vec!['_'; guess_vec.len()];
     // ouput_string_vec[0] = guess_vec[0];
