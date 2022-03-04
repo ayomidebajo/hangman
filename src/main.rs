@@ -71,8 +71,8 @@ fn main() {
     let guess_chars = vec![];
     let ouput_string_vec = vec!['_'; guess_vec.len()];
     // ouput_string_vec[0] = guess_vec[0];
-   println!("Welcome to the hangman game built with rust!, please enter a letter");
-   println!("You already know what this is :D");
+    println!("Welcome to the hangman game built with rust!, please enter a letter");
+    println!("You already know what this is :D");
     println!("Fill in the blank spaces{:?}", ouput_string_vec);
     let mut player_one = PlayerRoot::new(
         &random_word,
@@ -86,8 +86,6 @@ fn main() {
     );
 
     loop {
-     
-
         //Takes in an input
         //todo unwrap the input or validate the input
         let mut guess = String::from("");
@@ -95,28 +93,24 @@ fn main() {
             .read_line(&mut guess)
             .expect("Failed to read line");
         let altered_guess: char = guess.trim().chars().next().unwrap();
-        
 
-
-       if !player_one.ouput_string.contains(&altered_guess) {
-         player_one.no_of_guesses += 1;
-for n in player_one.word.char_indices() {
-
+        if !player_one.ouput_string.contains(&altered_guess) {
+            player_one.no_of_guesses += 1;
+            for n in player_one.word.char_indices() {
                 if n.1 == altered_guess {
-                  player_one.correct_guesses.push(n.1);
+                    player_one.correct_guesses.push(n.1);
                     player_one.ouput_string[n.0] = n.1;
-                             
+
                     println!("Fill in the blank spaces{:?}", player_one.ouput_string);
                 }
-
-        } 
-      } else {
-        println!("That letter is taken!!! guess again")
-      }
+            }
+        } else {
+            println!("That letter is taken!!! guess again")
+        }
         if player_one.correct_guesses.len() == guess_vec.len() {
-                  println!("YOU WIN!!");
-                  break
-                }
+            println!("YOU WIN!!");
+            break;
+        }
         if player_one.max_tries == player_one.no_of_guesses {
             println!("GAME OVER!!!");
             break;
