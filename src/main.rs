@@ -1,7 +1,7 @@
 // use clap::{Arg, Command};
 use rand::seq::SliceRandom;
 use std::io;
-// #[allow(dead_code)]
+#[allow(dead_code)]
 fn main() {
     struct PlayerRoot {
         word: String,
@@ -92,10 +92,19 @@ fn main() {
         io::stdin()
             .read_line(&mut guess)
             .expect("Failed to read line");
-        let altered_guess: char = guess.trim().chars().next().unwrap();
+        let altered_guess: char = match guess.trim().chars().next() {
+            Some(val) => val,
+            _ => {
+                println!("No letter inputted,type a letter!");
+                //It complains it needs a char :D
+                '0'
+                // break;
+            }
+        };
 
         if !player_one.ouput_string.contains(&altered_guess) {
             player_one.no_of_guesses += 1;
+
             for n in player_one.word.char_indices() {
                 if n.1 == altered_guess {
                     player_one.correct_guesses.push(n.1);
