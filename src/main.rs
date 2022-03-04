@@ -1,7 +1,7 @@
 // use clap::{Arg, Command};
 use rand::seq::SliceRandom;
 use std::io;
-
+#[allow(dead_code)]
 fn main() {
     struct PlayerRoot {
         word: String,
@@ -107,13 +107,7 @@ fn main() {
             } else {
                 continue 'outer;
             }
-            // println!(
-            //     "correct guess list{:?}, no of guesses {:?}",
-            //     player_one.correct_guesses, player_one.no_of_guesses
-            // )
         }
-
-        // if ()
         if player_one.max_tries == player_one.no_of_guesses {
             println!("GAME OVER!!!");
             break;
