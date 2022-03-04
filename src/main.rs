@@ -44,7 +44,7 @@ fn main() {
 
         fn generate_random_word(list: &Vec<String>) -> String {
             let word = list.choose(&mut rand::thread_rng()).unwrap();
-            println!("word {:?}", word);
+            // println!("word {:?}", word);
             word.to_string()
         }
         //Still don't know if I should keep this function, it's basically for producing alpahbets
@@ -83,30 +83,20 @@ fn main() {
         guess_chars,
     );
     loop {
+      println!("Welcome to the hangman game built with rust!, please enter a letter");
+
         //Takes in an input
         //todo unwrap the input or validate the input
-        //make the loop based on max_tries
-        //break loop once max_tries are exhausted
         let mut guess = String::from("");
         io::stdin()
             .read_line(&mut guess)
             .expect("Failed to read line");
-        println!("You guessed: {}", guess);
         let altered_guess: char = guess.trim().chars().next().unwrap();
-        // if altered_guess == None<char> {
-        //    continue
-        // }
-
-        // let unwrapped_guess = match altered_guess {
-        //     Some(x) => x,
-        //     None => continue
-        // };
+        player_one.no_of_guesses += 1;
         'outer: for n in random_word.char_indices() {
-    
             if !player_one.correct_guesses.contains(&n.1) {
                 if n.1 == altered_guess {
                     player_one.correct_guesses.push(n.1);
-                     player_one.no_of_guesses += 1;
                 }
             } else {
                 continue 'outer;
@@ -116,7 +106,9 @@ fn main() {
                 player_one.correct_guesses, player_one.no_of_guesses
             )
         }
-
-        // break;
+        if player_one.max_tries == player_one.no_of_guesses {
+          println!("GAME OVER!!!");
+            break;
+        }
     }
 }
