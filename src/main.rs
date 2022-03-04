@@ -80,7 +80,7 @@ fn main() {
         letters,
         list_of_words,
         ouput_string_vec,
-        6,
+        10,
         "".to_string(),
         guess_chars,
     );
@@ -104,10 +104,16 @@ fn main() {
                     player_one.ouput_string[n.0] = n.1;
                     println!("Fill in the blank spaces{:?}", player_one.ouput_string);
                 }
+                
             } else {
                 continue 'outer;
             }
         }
+
+        if player_one.correct_guesses.len() == guess_vec.len() {
+                  println!("YOU WIN!!");
+                  break
+                }
         if player_one.max_tries == player_one.no_of_guesses {
             println!("GAME OVER!!!");
             break;
