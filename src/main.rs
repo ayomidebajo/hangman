@@ -67,9 +67,10 @@ fn main() {
         'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
     ];
     let guess_vec: Vec<char> = random_word.clone().chars().collect();
-    // println!("guess vec{:?}, guess capacity{:?}", guess_vec, guess_vec.capacity());
+    println!("guess vec{:?}", guess_vec);
     let guess_chars = vec![];
     let ouput_string_vec = vec!['_'; guess_vec.len()];
+    // ouput_string_vec[0] = guess_vec[0];
    println!("Welcome to the hangman game built with rust!, please enter a letter");
    println!("You already know what this is :D");
     println!("Fill in the blank spaces{:?}", ouput_string_vec);
@@ -100,14 +101,16 @@ fn main() {
             if !player_one.correct_guesses.contains(&n.1) {
                 if n.1 == altered_guess {
                     player_one.correct_guesses.push(n.1);
+                    player_one.ouput_string[n.0] = n.1;
+                    println!("Fill in the blank spaces{:?}", player_one.ouput_string);
                 }
             } else {
                 continue 'outer;
             }
-            println!(
-                "correct guess list{:?}, no of guesses {:?}",
-                player_one.correct_guesses, player_one.no_of_guesses
-            )
+            // println!(
+            //     "correct guess list{:?}, no of guesses {:?}",
+            //     player_one.correct_guesses, player_one.no_of_guesses
+            // )
         }
 
         // if ()
