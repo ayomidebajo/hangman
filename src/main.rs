@@ -1,7 +1,7 @@
 // use clap::{Arg, Command};
 use rand::seq::SliceRandom;
 use std::io;
-#[allow(dead_code)]
+// #[allow(dead_code)]
 fn main() {
     struct PlayerRoot {
         word: String,
@@ -97,7 +97,7 @@ fn main() {
         let altered_guess: char = guess.trim().chars().next().unwrap();
         player_one.no_of_guesses += 1;
 
-        'outer: for n in random_word.char_indices() {
+        'outer: for n in player_one.word.char_indices() {
             if !player_one.correct_guesses.contains(&n.1) {
                 if n.1 == altered_guess {
                     player_one.correct_guesses.push(n.1);
