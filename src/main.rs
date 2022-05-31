@@ -8,7 +8,7 @@ fn main() {
         no_of_guesses: i8,
         available_alphabets: Vec<char>,
         list_of_words_to_guess_from: Vec<String>,
-        ouput_string: Vec<char>,
+        output_string: Vec<char>,
         max_tries: i8,
         guess: String,
         correct_guesses: Vec<char>,
@@ -20,7 +20,7 @@ fn main() {
             no_of_guesses: i8,
             available_alphabets: Vec<char>,
             list_of_words_to_guess_from: Vec<String>,
-            ouput_string: Vec<char>,
+            output_string: Vec<char>,
             max: i8,
             guess: String,
             correct_guesses: Vec<char>,
@@ -30,7 +30,7 @@ fn main() {
                 no_of_guesses,
                 available_alphabets,
                 list_of_words_to_guess_from,
-                ouput_string,
+                output_string,
                 max_tries: max,
                 guess,
                 correct_guesses,
@@ -102,15 +102,18 @@ fn main() {
             }
         };
 
-        if !player_one.ouput_string.contains(&altered_guess) {
+        if !player_one.output_string.contains(&altered_guess) {
             player_one.no_of_guesses += 1;
 
             for n in player_one.word.char_indices() {
+            
                 if n.1 == altered_guess {
                     player_one.correct_guesses.push(n.1);
-                    player_one.ouput_string[n.0] = n.1;
+                    player_one.output_string[n.0] = n.1;
+                    let guess_score = player_one.max_tries - player_one.no_of_guesses;
 
-                    println!("Fill in the blank spaces{:?}", player_one.ouput_string);
+
+                    println!("Fill in the blank spaces{:?} no of guesses remaining {:?}", player_one.output_string, guess_score);
                 }
             }
         } else {
@@ -120,6 +123,7 @@ fn main() {
             println!("YOU WIN!!");
             break;
         }
+        
         if player_one.max_tries == player_one.no_of_guesses {
             println!("GAME OVER!!!");
             break;
