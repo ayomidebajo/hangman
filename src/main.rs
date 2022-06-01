@@ -80,7 +80,7 @@ fn main() {
         letters,
         list_of_words,
         ouput_string_vec,
-        9,
+        10,
         "".to_string(),
         guess_chars,
     );
@@ -105,16 +105,27 @@ fn main() {
         if !player_one.output_string.contains(&altered_guess) {
             player_one.no_of_guesses += 1;
 
+            if !player_one.word.contains(altered_guess) {
+                let guess_score = player_one.max_tries - player_one.no_of_guesses;
+                println!(
+                        "Fill in the blank spaces{:?} no of guesses remaining {:?}",
+                        player_one.output_string, guess_score
+                    );
+            }
+
+
             for n in player_one.word.char_indices() {
-            
                 if n.1 == altered_guess {
-                    player_one.correct_guesses.push(n.1);
-                    player_one.output_string[n.0] = n.1;
                     let guess_score = player_one.max_tries - player_one.no_of_guesses;
 
+                    player_one.correct_guesses.push(n.1);
+                    player_one.output_string[n.0] = n.1;
 
-                    println!("Fill in the blank spaces{:?} no of guesses remaining {:?}", player_one.output_string, guess_score);
-                }
+                    println!(
+                        "Fill in the blank spaces{:?} no of guesses remaining {:?}",
+                        player_one.output_string, guess_score
+                    );
+                } 
             }
         } else {
             println!("That letter is taken!!! guess again")
@@ -123,9 +134,9 @@ fn main() {
             println!("YOU WIN!!");
             break;
         }
-        
+
         if player_one.max_tries == player_one.no_of_guesses {
-            println!("GAME OVER!!!");
+            println!("GAME OVER!!! \n THE WORD IS {:?}", player_one.word);
             break;
         }
     }
