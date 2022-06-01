@@ -108,7 +108,7 @@ fn main() {
             if !player_one.word.contains(altered_guess) {
                 let guess_score = player_one.max_tries - player_one.no_of_guesses;
                 println!(
-                        "Fill in the blank spaces{:?} no of guesses remaining {:?}",
+                        "Wrong guess\nFill in the blank spaces{:?} no of guesses remaining {:?}",
                         player_one.output_string, guess_score
                     );
             }
