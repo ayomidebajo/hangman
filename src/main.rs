@@ -43,14 +43,14 @@ fn main() {
             word.to_string()
         }
         //Still don't know if I should keep this function, it's basically for producing alpahbets
-        fn _produce_alphabets(self) {
-            let letters = String::from(
-                "A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y,Z",
-            );
-            for item in letters.split(",") {
-                println!("{:?}", item)
-            }
-        }
+        // fn _produce_alphabets(self) {
+        //     let letters = String::from(
+        //         "A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y,Z",
+        //     );
+        //     for item in letters.split(",") {
+        //         println!("{:?}", item)
+        //     }
+        // }
     }
     //list of words for the game
     let list_of_words = vec![
@@ -67,10 +67,8 @@ fn main() {
         'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
     ];
     let guess_vec: Vec<char> = random_word.clone().chars().collect();
-    // println!("guess vec{:?}", guess_vec);
     let guess_chars = vec![];
     let ouput_string_vec = vec!['_'; guess_vec.len()];
-    // ouput_string_vec[0] = guess_vec[0];
     println!("Welcome to the hangman game built with rust!, please enter a letter");
     println!("You already know what this is :D");
     println!("Fill in the blank spaces{:?}", ouput_string_vec);
