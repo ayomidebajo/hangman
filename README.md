@@ -1,5 +1,5 @@
 # hangman
-A simple hangman game built with Rust
+Hangman game built with Rust
 
 # how to play game
 ## Cargo run
