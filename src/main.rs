@@ -1,9 +1,8 @@
-// use clap::{Arg, Command};
 use rand::seq::SliceRandom;
 use std::io;
 #[allow(dead_code)]
 fn main() {
-    struct PlayerRoot {
+    struct GameAssets {
         word: String,
         no_of_guesses: i8,
         available_alphabets: Vec<char>,
@@ -14,7 +13,7 @@ fn main() {
         correct_guesses: Vec<char>,
     }
 
-    impl PlayerRoot {
+    impl GameAssets {
         fn new(
             word: &str,
             no_of_guesses: i8,
@@ -24,8 +23,8 @@ fn main() {
             max: i8,
             guess: String,
             correct_guesses: Vec<char>,
-        ) -> PlayerRoot {
-            PlayerRoot {
+        ) -> GameAssets {
+            GameAssets {
                 word: String::from(word),
                 no_of_guesses,
                 available_alphabets,
@@ -61,7 +60,7 @@ fn main() {
         "something".to_string(),
         "notified".to_string(),
     ];
-    let random_word = PlayerRoot::generate_random_word(&list_of_words);
+    let random_word = GameAssets::generate_random_word(&list_of_words);
     let letters = vec![
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
         'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -72,7 +71,7 @@ fn main() {
     println!("Welcome to the hangman game built with rust!, please enter a letter");
     println!("You already know what this is :D");
     println!("Fill in the blank spaces{:?}", ouput_string_vec);
-    let mut player_one = PlayerRoot::new(
+    let mut player_one = GameAssets::new(
         &random_word,
         0,
         letters,
